@@ -50,6 +50,15 @@ export default function SignupPage() {
           onChange={(e) => setUser({ ...user, password: e.target.value })}
           placeholder="придумай пароль"
         />
+        <br />
+        <button
+          type="button"
+          onClick={onSignup}
+          className="py-1  bg-cyan-500 hover:bg-cyan-600 rounded-lg text-white"
+        >
+          Зарегестрироваться
+        </button>
+        <br />
       </div>
     </div>
   );
