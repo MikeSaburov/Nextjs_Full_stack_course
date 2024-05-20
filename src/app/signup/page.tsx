@@ -56,8 +56,14 @@ export default function SignupPage() {
           onClick={onSignup}
           className="py-1  bg-cyan-500 hover:bg-cyan-600 rounded-lg text-white"
         >
-          Зарегестрироваться
+          Создать пользователя
         </button>
+        <Link
+          href={'/login'}
+          className="text-sm text-gray-500 hover:text-gray-800"
+        >
+          Нажми если уже есть учетка?
+        </Link>
         <br />
       </div>
     </div>
