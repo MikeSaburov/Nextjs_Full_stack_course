@@ -17,7 +17,7 @@ export default function SignupPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 ">
       <div className="border border-red-600 p-5 rounded-lg">
-        <h1>Войти</h1>
+        <h1>Зарегестрируйся</h1>
       </div>
     </div>
   );
