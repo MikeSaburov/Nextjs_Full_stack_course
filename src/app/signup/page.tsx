@@ -62,7 +62,7 @@ export default function SignupPage() {
           href={'/login'}
           className="text-sm text-gray-500 hover:text-gray-800"
         >
-          Нажми если уже есть учетка?
+          Нажми если уже есть учетка!
         </Link>
         <br />
       </div>
