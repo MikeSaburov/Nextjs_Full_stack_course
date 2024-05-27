@@ -1,8 +1,7 @@
-import { verify } from 'crypto';
 import mongoose from 'mongoose';
-import { type } from 'os';
 
-const userSchema = await mongoose.Schema({
+const Schema = mongoose.Schema;
+const userSchema = new Schema({
   username: {
     type: String,
     required: [true, 'Пожадуйста введите имя пользователя'],
@@ -31,5 +30,6 @@ const userSchema = await mongoose.Schema({
   verifyTokenExpiry: Date,
 });
 
-const User = mongoose.models.users || mongoose.model('User', userSchema);
-export default User;
+// const User = mongoose.models.users || mongoose.model('User', userSchema);
+// export default User;
+module.exports = mongoose.models.User || mongoose.model('User', userSchema);
