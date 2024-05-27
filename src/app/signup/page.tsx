@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -13,9 +14,23 @@ export default function SignupPage() {
     username: '',
   });
 
+  const [loading, setLoading] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
-  const onSignup = async () => {};
+  const onSignup = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post('/api/users/signup', user);
+      console.log('Регстрация успешна', response.data);
+      router.push('/login');
+    } catch (error: any) {
+      console.log('Регистрация не удалась', error);
+
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (
@@ -31,7 +46,10 @@ export default function SignupPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 ">
-      <h1 className="font-semibold text-2xl">Регистрация</h1>
+      <Toaster position="top-center" reverseOrder={false} />
+      <h1 className="font-semibold text-2xl">
+        {loading ? 'Процесс регистрации' : 'Регистрация'}
+      </h1>
       <div className="flex flex-col">
         <br />
         <label htmlFor="username">Имя пользователя</label>
@@ -71,7 +89,9 @@ export default function SignupPage() {
           onClick={onSignup}
           className="py-1  bg-cyan-500 hover:bg-cyan-600 rounded-lg text-white"
         >
-          {buttonDisabled ? 'Не регистрироваться' : ' Создать пользователя'}
+          {buttonDisabled
+            ? 'Нельзя зарегестрироваться'
+            : ' Создать пользователя'}
         </button>
         <Link
           href={'/login'}
