@@ -22,8 +22,10 @@ export default function SignupPage() {
       setLoading(true);
       const response = await axios.post('/api/users/signup', user);
       console.log('Регстрация успешна', response.data);
-      router.push('/login');
-      toast.success('Successfully toasted!');
+      toast.success('Пользователь создан успешно!');
+      setTimeout(() => {
+        router.push('/login');
+      }, 3000);
     } catch (error: any) {
       console.log('Регистрация не удалась', error);
 
