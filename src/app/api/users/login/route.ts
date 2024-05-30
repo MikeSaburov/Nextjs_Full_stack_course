@@ -28,6 +28,12 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    //создать данный для токенов
+    const tokenData = {
+      id: user._id,
+      email: user.email,
+      username: user.username,
+    };
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
