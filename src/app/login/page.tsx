@@ -44,7 +44,9 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 ">
-      <h1 className="font-semibold text-2xl">Войти</h1>
+      <h1 className="font-semibold text-2xl">
+        {loading ? 'Загрузка' : 'Войти'}
+      </h1>
       <div className="flex flex-col">
         <Toaster position="top-left" reverseOrder={false} />
         {/* <br />
