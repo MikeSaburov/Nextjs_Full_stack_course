@@ -20,7 +20,7 @@ export default function LoginPage() {
   const onLogin = async () => {
     try {
       setLoading(true);
-      const response = await axios.post('/api/auth/login', user);
+      const response = await axios.post('/api/users/login', user);
       console.log('Вход успешен', response.data);
       toast.success('Вы вошли в систему!');
       setTimeout(() => {
