@@ -6,8 +6,8 @@ export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
   console.log(path);
   
-  //const isPublicPath = (path === '/login' || path === '/signup')
-  const isPublicPath = path === '/login'
+  const isPublicPath = path === '/login' || path === '/signup'
+ 
   const token = request.cookies.get('token')?.value || ''
 
   if(isPublicPath && token){
@@ -23,6 +23,7 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     '/',
+    '/login',
     '/profile',
     '/signup',
   ],

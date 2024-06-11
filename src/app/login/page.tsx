@@ -13,7 +13,6 @@ export default function LoginPage() {
 
   const [user, setUser] = useState({
     email: '',
-    username: '',
     password: '',
   });
 
