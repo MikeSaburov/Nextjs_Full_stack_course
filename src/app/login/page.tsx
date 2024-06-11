@@ -25,7 +25,7 @@ export default function LoginPage() {
       toast.success('Вы вошли в систему!');
       setTimeout(() => {
         router.push('/profile');
-      }, 3000);
+      }, 2000);
     } catch (error: any) {
       console.log('Неверный логин', error.message);
       toast.error(error.message);
@@ -49,17 +49,7 @@ export default function LoginPage() {
       </h1>
       <div className="flex flex-col">
         <Toaster position="top-left" reverseOrder={false} />
-        {/* <br />
-        <label htmlFor="username">Имя пользователя</label>
-        <input
-          className="p-2 rounded-md"
-          type="text"
-          name="username"
-          value={user.username}
-          onChange={(e) => setUser({ ...user, username: e.target.value })}
-          placeholder="введите имя пользователя"
-        /> */}
-
+       
         <br />
         <label htmlFor=" email">Адрес эл. почты</label>
         <input
