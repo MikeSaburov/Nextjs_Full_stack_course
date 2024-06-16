@@ -1,7 +1,8 @@
-import { connect } from '@/dbConfig/dbConfig';
-import User from '@/models/userModel';
-import { NextRequest, NextResponse } from 'next/server';
-import bcryptjs from 'bcryptjs';
+import { connect } from "@/dbConfig/dbConfig";
+import User from "@/models/userModel";
+import { NextRequest, NextResponse } from "next/server";
+import bcryptjs from "bcryptjs";
+import { sendEmail } from "@/helpers/mailer";
 
 connect();
 
@@ -15,7 +16,7 @@ export async function POST(request: NextRequest) {
     //проверка существует ли пользователь
     const user = await User.findOne({ email });
     if (user) {
-      return NextResponse.json('Пользователь с таким email уже существует', {
+      return NextResponse.json("Пользователь с таким email уже существует", {
         status: 400,
       });
     }
@@ -35,8 +36,12 @@ export async function POST(request: NextRequest) {
 
     console.log(savedUser);
 
+    //отпарвить эл. письмо с подтверждением
+
+    await sendEmail({ email, emailType: "VERIFY", userId: savedUser.id });
+
     return NextResponse.json({
-      message: 'Пользователь создан успешно!',
+      message: "Пользователь создан успешно!",
       success: true,
       savedUser,
     });
