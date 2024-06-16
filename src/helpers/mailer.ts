@@ -8,12 +8,12 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     const hashedToken = await bcryptjs.hash(userId.toString(), 10);
 
     if (emailType === "VERIFY") {
-      await User.findOneAndUpdate(userId, {
+      await User.findByIdAndUpdate(userId, {
         verifyToken: hashedToken,
         verifyTokenExpiry: Date.now() + 3600000,
       });
     } else if (emailType === "RESET") {
-      await User.findOneAndUpdate(userId, {
+      await User.findByIdAndUpdate(userId, {
         forgotPaaswordToken: hashedToken,
         forgotPaaswordTokenExpiry: Date.now() + 3600000,
       });
@@ -38,7 +38,9 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
       }/verifyemail?token=${hashedToken}">here</a>  to 
       ${
         emailType === "VERIFY" ? "Подтвердите эл. почту" : "Сбросить пароль"
-      }</p>`,
+      }или скопируйте и вставьте ссылку ниже в свой браузер.<br> ${
+        process.env.DOMAIN
+      }/verifyemail?token=${hashedToken}</p>`,
     };
 
     const masilresponse = await transporter.sendMail(mailOptions);

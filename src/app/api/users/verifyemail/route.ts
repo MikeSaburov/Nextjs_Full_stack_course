@@ -27,10 +27,10 @@ export async function POST(req: NextRequest) {
 
     await user.save();
 
-    return NextResponse.json(
-      { message: "Пользователь успешно активирован", success: true },
-      { status: 200 }
-    );
+    return NextResponse.json({
+      message: "Пользователь успешно активирован",
+      success: true,
+    });
   } catch (error: any) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
