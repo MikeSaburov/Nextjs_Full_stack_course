@@ -34,12 +34,11 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
       subject:
         emailType === "VERIFY" ? "Подтвердите эл. почту" : "Сбросить пароль",
       html: `<p>
-      <a href='${
-        process.env.DOMAIN
-      }/verifyemail?token=${hashedToken}'>Нажми сюда</a>
+      Нажми
+      <a href='${process.env.DOMAIN}/verifyemail?token=${hashedToken}'> сюда</a>
       для ${emailType === "VERIFY" ? "подтверждения почты" : "сброса пароля"}
       <br>
-      Или скопируй ссылку и вставь ее в окено браузера
+      Или скопируй ссылку и вставь ее в окно браузера
       <br>
       ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
       </p>`,
