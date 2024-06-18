@@ -33,14 +33,16 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
       to: email,
       subject:
         emailType === "VERIFY" ? "Подтвердите эл. почту" : "Сбросить пароль",
-      html: `<p>Click <a hef="${
+      html: `<p>
+      <a href='${
         process.env.DOMAIN
-      }/verifyemail?token=${hashedToken}">here</a>  to 
-      ${
-        emailType === "VERIFY" ? "Подтвердите эл. почту" : "Сбросить пароль"
-      }или скопируйте и вставьте ссылку ниже в свой браузер.<br> ${
-        process.env.DOMAIN
-      }/verifyemail?token=${hashedToken}</p>`,
+      }/verifyemail?token=${hashedToken}'>Нажми сюда</a>
+      для ${emailType === "VERIFY" ? "подтверждения почты" : "сброса пароля"}
+      <br>
+      Или скопируй ссылку и вставь ее в окено браузера
+      <br>
+      ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
+      </p>`,
     };
 
     const masilresponse = await transporter.sendMail(mailOptions);
