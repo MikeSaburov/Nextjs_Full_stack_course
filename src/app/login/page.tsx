@@ -27,7 +27,7 @@ export default function LoginPage() {
       }, 2000);
     } catch (error: any) {
       console.log('Неверный логин', error.message);
-      toast.error(error.message);
+      toast.error(`Ошибка входа: ${error.message}`);
     } finally {
       setLoading(false);
     }
